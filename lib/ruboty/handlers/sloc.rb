@@ -1,5 +1,6 @@
 require 'ruboty'
 require 'sloc'
+require 'sloc/cli'
 
 module Ruboty
   module Handlers
@@ -13,7 +14,11 @@ module Ruboty
       )
 
       def sloc(message)
-        message.reply(10)
+        Sloc::CLI.new.run(repository)
+      end
+
+      def repository
+        ENV['RUBOTY_SLOC_DIRECTORY']
       end
     end
   end
