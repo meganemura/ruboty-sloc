@@ -14,7 +14,8 @@ module Ruboty
       )
 
       def sloc(message)
-        arguments = message.match_data.names.include?('args') ? message['args'].split : nil
+        arguments = message['args'] ? message['args'].split : nil
+
         arguments = [arguments, repository].flatten.compact
         ::Sloc::CLI.new.run(arguments)
       end
